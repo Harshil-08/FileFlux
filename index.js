@@ -133,7 +133,7 @@ async function convertImageToPdf(inputPath, outputPath) {
 // Python conversions
 async function convertPdfToDocx(inputPath, outputPath) {
   return new Promise((resolve, reject) => {
-    exec(`"${__dirname}/venv/bin/python" converter.py pdf2docx "${inputPath}" "${outputPath}"`, (err, stdout) => {
+    exec(`python converter.py pdf2docx "${inputPath}" "${outputPath}"`, (err, stdout) => {
       if (err) return reject(err);
       if (stdout.includes("ERROR")) return reject(new Error(stdout));
       resolve(stdout.trim());
@@ -143,7 +143,7 @@ async function convertPdfToDocx(inputPath, outputPath) {
 
 async function convertDocxToPdf(inputPath, outputPath) {
   return new Promise((resolve, reject) => {
-    exec(`"${__dirname}/venv/bin/python" converter.py docx2pdf "${inputPath}" "${outputPath}"`, (err, stdout) => {
+    exec(`python converter.py docx2pdf "${inputPath}" "${outputPath}"`, (err, stdout) => {
       if (err) return reject(err);
       if (stdout.includes("ERROR")) return reject(new Error(stdout));
       resolve(stdout.trim());
