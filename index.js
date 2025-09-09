@@ -9,6 +9,13 @@ const sharp = require("sharp");
 const showdown = require("showdown");
 const { PDFDocument } = require("pdf-lib");
 
+const http = require("http");
+const PORT = process.env.PORT || 3000;
+
+http.createServer((req, res) => {
+  res.end("Bot is running");
+}).listen(PORT, () => console.log(`HTTP server listening on ${PORT}`));
+
 const {
   Client,
   GatewayIntentBits,
