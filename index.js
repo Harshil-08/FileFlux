@@ -42,7 +42,10 @@ const commands = [
       opt.setName("file")
         .setDescription("Upload the file to convert")
         .setRequired(true)
-    )
+    ),
+	new SlashCommandBuilder()
+		.setName("ping")
+		.setDescription("Check if the bot is online")
 ].map(cmd => cmd.toJSON());
 
 const rest = new REST({ version: "10" }).setToken(TOKEN);
@@ -179,6 +182,12 @@ async function runConversion({ sourcePath, sourceExt, targetExt, outputPath }) {
 // ------------------ Bot Interaction ------------------
 client.on("interactionCreate", async (interaction) => {
   try {
+		if(interaction.isChatInputCommand() && interaction.commandName === "ping"){
+			return interaction.reply({
+				content: "🏓 Pong! Bot is online."
+			})
+		}
+
     if (interaction.isChatInputCommand() && interaction.commandName === "convert") {
       const file = interaction.options.getAttachment("file");
       if (!file) return interaction.reply({ content: "Please attach a file.", ephemeral: true });
@@ -233,7 +242,7 @@ client.on("interactionCreate", async (interaction) => {
         if (file.size > 10 * 1024 * 1024) throw new Error("File too large (max 10 MB).");
         await downloadTo(file.url, sourcePath);
         await runConversion({ sourcePath, sourceExt, targetExt, outputPath });
-        await interaction.followUp({ content: "✅ Conversion complete!", files: [outputPath], flags: 64 }); // ephemeral
+        await interaction.followUp({ content: "✅ Conversion complete!", files: [outputPath], flags: 64 });
       } catch (err) {
         console.error(err);
         await interaction.followUp({ content: `❌ Conversion failed: ${err.message || err}`, flags: 64 });
