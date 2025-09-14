@@ -1,3 +1,8 @@
+[![Top.gg Verified](https://img.shields.io/badge/Top.gg-Verified-brightgreen)](https://top.gg/bot/1414901319998767144)
+[![Node.js](https://img.shields.io/badge/Node.js-v18+-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+
+
 # Discord File Converter Bot
 
 A Discord bot that allows users to **convert files between different formats** directly within Discord using slash commands. Supports image, PDF, DOCX, and text/Markdown conversions.
