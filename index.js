@@ -258,3 +258,5 @@ client.on("interactionCreate", async (interaction) => {
 
 client.once("clientReady", () => console.log(`Logged in as ${client.user.tag}`));
 client.login(TOKEN);
+console.log("TOKEN present:", !!process.env.TOKEN);
+console.log("CLIENT_ID present:", !!process.env.CLIENT_ID);
